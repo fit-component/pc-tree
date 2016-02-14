@@ -29,11 +29,16 @@ export default class TreeNode extends React.Component {
             'fa-caret-down': this.state.showChildren
         })
 
-        let Children = React.Children.map(this.props.children, (item)=> {
-            return React.cloneElement(item, {
-                defaultExpendAll: this.props.defaultExpendAll
+        let Children = null
+        if (this.props) {
+            Children = React.Children.map(this.props.children, (item)=> {
+                if (item) {
+                    return React.cloneElement(item, {
+                        defaultExpendAll: this.props.defaultExpendAll
+                    })
+                }
             })
-        })
+        }
 
         return (
             <div className="_namespace">
@@ -48,7 +53,7 @@ export default class TreeNode extends React.Component {
                 </div>
                 <div style={childrenStyle}
                      className="children">
-                    {Children}
+                    {Children ? Children : null}
                 </div>
             </div>
         )
