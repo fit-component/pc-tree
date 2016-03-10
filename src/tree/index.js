@@ -1,4 +1,5 @@
 import React from 'react'
+import classNames from 'classnames'
 
 export default class Tree extends React.Component {
     constructor(props) {
@@ -7,14 +8,20 @@ export default class Tree extends React.Component {
     }
 
     render() {
-        let Children = React.Children.map(this.props.children, (item)=> {
+        const {className, children, defaultExpendAll, ...others} = this.props
+        const classes = classNames({
+            '_namespace': true,
+            [className]: className
+        })
+
+        let Children = React.Children.map(children, (item)=> {
             return React.cloneElement(item, {
-                defaultExpendAll: this.props.defaultExpendAll
+                defaultExpendAll: defaultExpendAll
             })
         })
 
         return (
-            <div>
+            <div {...others} className={classes}>
                 {Children}
             </div>
         )
@@ -22,5 +29,6 @@ export default class Tree extends React.Component {
 }
 
 Tree.defaultProps = {
+    // @desc 默认是否展开全部
     defaultExpendAll: false
 }

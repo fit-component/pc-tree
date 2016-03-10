@@ -18,6 +18,12 @@ export default class TreeNode extends React.Component {
     }
 
     render() {
+        const {className, children, defaultExpendAll, title, render, ...others} = this.props
+        const classes = classNames({
+            '_namespace': true,
+            [className]: className
+        })
+
         let childrenStyle = {
             'display': this.state.showChildren ? 'block' : null
         }
@@ -31,25 +37,25 @@ export default class TreeNode extends React.Component {
 
         let Children = null
         if (this.props) {
-            Children = React.Children.map(this.props.children, (item)=> {
+            Children = React.Children.map(children, (item)=> {
                 if (item) {
                     return React.cloneElement(item, {
-                        defaultExpendAll: this.props.defaultExpendAll
+                        defaultExpendAll: defaultExpendAll
                     })
                 }
             })
         }
 
         return (
-            <div className="_namespace">
+            <div {...others} className={classes}>
                 <div onClick={this.handleTitleClick.bind(this)}
                      className="title">
-                    {React.Children.count(this.props.children) > 0 ?
+                    {React.Children.count(children) > 0 ?
                         <div className="title-caret">
                             <i className={titleCaretClass}/>
                         </div> : <div className="empty-caret"/>
                     }
-                    {this.props.title || this.props.render()}
+                    {title || render()}
                 </div>
                 <div style={childrenStyle}
                      className="children">
