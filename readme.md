@@ -3,5 +3,5 @@
 ---
 
 ````jsx
-npm install fit-tree /* or */ fis3 install fit-tree
+npm install fit-tree
 ````
