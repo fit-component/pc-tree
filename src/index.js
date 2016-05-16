@@ -1,4 +1,3 @@
-import 'fit-style'
 import Tree from './tree'
 import TreeNode from './tree-node'
 

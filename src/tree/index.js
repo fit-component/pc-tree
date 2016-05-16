@@ -1,5 +1,6 @@
 import React from 'react'
 import classNames from 'classnames'
+import './index.scss'
 
 export default class Tree extends React.Component {
     constructor(props) {
@@ -11,7 +12,7 @@ export default class Tree extends React.Component {
         const {className, children, defaultExpendAll, ...others} = this.props
         const classes = classNames({
             '_namespace': true,
-            [className]: className
+            [className] : className
         })
 
         let Children = React.Children.map(children, (item)=> {
