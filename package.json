@@ -1,6 +1,6 @@
 {
   "name": "fit-tree",
-  "version": "3.0.5",
+  "version": "3.0.8",
   "description": "tree",
   "main": "lib/index.js",
   "scripts": {
