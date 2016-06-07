@@ -15,11 +15,11 @@ export default class TreeNode extends React.Component<module.PropsInterface, mod
         })
     }
 
-    handleTitleClick() {
+    handleTitleClick(event: Event) {
         this.setState({
             showChildren: !this.state.showChildren
         })
-        this.props.onClick(this.props.title)
+        this.props.onClick(event)
     }
 
     render() {
