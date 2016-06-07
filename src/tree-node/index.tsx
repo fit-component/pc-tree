@@ -2,6 +2,7 @@ import * as React from 'react'
 import * as classNames from 'classnames'
 import * as module from './module'
 import {others} from '../../../../common/transmit-transparently/src'
+import '../font/index.scss'
 import './index.scss'
 
 export default class TreeNode extends React.Component<module.PropsInterface, module.StateInterface> {
@@ -33,10 +34,8 @@ export default class TreeNode extends React.Component<module.PropsInterface, mod
         }
 
         let titleCaretClass = classNames({
-            'fa': true,
-            'caret-left': true,
-            'fa-caret-right': !this.state.showChildren,
-            'fa-caret-down': this.state.showChildren
+            'fit-tree-right': true,
+            'down': this.state.showChildren
         })
 
         let Children: any = null
@@ -55,16 +54,16 @@ export default class TreeNode extends React.Component<module.PropsInterface, mod
         return (
             <div {..._others} className={classes}>
                 <div onClick={this.handleTitleClick.bind(this) }
-                    className="title">
+                     className="title">
                     {React.Children.count(children) > 0 ?
-                        <div className="title-caret">
-                            <i className={titleCaretClass}/>
-                        </div> : <div className="empty-caret"/>
-                    }
+                    <div className="title-caret">
+                        <i className={titleCaretClass}/>
+                    </div> : <div className="empty-caret"/>
+                        }
                     {title || render() }
                 </div>
                 <div style={childrenStyle}
-                    className="children">
+                     className="children">
                     {Children ? Children : null}
                 </div>
             </div>
