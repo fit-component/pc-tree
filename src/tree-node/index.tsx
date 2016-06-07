@@ -1,13 +1,17 @@
-import React from 'react'
-import classNames from 'classnames'
+import * as React from 'react'
+import * as classNames from 'classnames'
+import * as module from './module'
+import {others} from '../../../../common/transmit-transparently/src'
 import './index.scss'
 
-export default class TreeNode extends React.Component {
-    constructor(props) {
-        super(props)
-        this.state = {
+export default class TreeNode extends React.Component<module.PropsInterface, module.StateInterface> {
+    static defaultProps: module.PropsInterface = new module.Props()
+    public state: module.StateInterface = new module.State()
+
+    componentWillMount() {
+        this.setState({
             showChildren: this.props.defaultExpendAll || this.props.showChildren
-        }
+        })
     }
 
     handleTitleClick() {
@@ -18,7 +22,7 @@ export default class TreeNode extends React.Component {
     }
 
     render() {
-        const {className, children, defaultExpendAll, title, render, ...others} = this.props
+        const {className, children, defaultExpendAll, title, render} = this.props
         const classes = classNames({
             '_namespace': true,
             [className]: className
@@ -35,9 +39,9 @@ export default class TreeNode extends React.Component {
             'fa-caret-down': this.state.showChildren
         })
 
-        let Children = null
+        let Children: any = null
         if (this.props) {
-            Children = React.Children.map(children, (item)=> {
+            Children = React.Children.map(children, (item: any) => {
                 if (item) {
                     return React.cloneElement(item, {
                         defaultExpendAll: defaultExpendAll
@@ -46,32 +50,24 @@ export default class TreeNode extends React.Component {
             })
         }
 
+        const _others = others(new module.Props(), this.props)
+
         return (
-            <div {...others} className={classes}>
-                <div onClick={this.handleTitleClick.bind(this)}
-                     className="title">
+            <div {..._others} className={classes}>
+                <div onClick={this.handleTitleClick.bind(this) }
+                    className="title">
                     {React.Children.count(children) > 0 ?
                         <div className="title-caret">
                             <i className={titleCaretClass}/>
                         </div> : <div className="empty-caret"/>
                     }
-                    {title || render()}
+                    {title || render() }
                 </div>
                 <div style={childrenStyle}
-                     className="children">
+                    className="children">
                     {Children ? Children : null}
                 </div>
             </div>
         )
-    }
-}
-
-TreeNode.defaultProps = {
-    title: '',
-    showChildren: false,
-    defaultExpendAll: false,
-    render: ()=> {
-    },
-    onClick: (title)=> {
     }
 }
