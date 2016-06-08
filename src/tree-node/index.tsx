@@ -15,11 +15,23 @@ export default class TreeNode extends React.Component<module.PropsInterface, mod
         })
     }
 
-    handleTitleClick(event: Event) {
-        this.setState({
-            showChildren: !this.state.showChildren
-        })
+    handleContainerClick(event: Event) {
         this.props.onClick(event)
+        if (!this.props.toggleByArrow) {
+            this.setState({
+                showChildren: !this.state.showChildren
+            })
+            this.props.onToggleShow(event)
+        }
+    }
+    
+    handleArrowClick(event:Event){
+        if (this.props.toggleByArrow){
+            this.setState({
+                showChildren: !this.state.showChildren
+            })
+            this.props.onToggleShow(event)
+        }
     }
 
     render() {
@@ -53,10 +65,11 @@ export default class TreeNode extends React.Component<module.PropsInterface, mod
 
         return (
             <div {..._others} className={classes}>
-                <div onClick={this.handleTitleClick.bind(this) }
+                <div onClick={this.handleContainerClick.bind(this) }
                      className="title">
                     {React.Children.count(children) > 0 ?
-                    <div className="title-caret">
+                    <div className="title-caret"
+                         onClick={this.handleArrowClick.bind(this) }>
                         <i className={titleCaretClass}/>
                     </div> : <div className="empty-caret"/>
                         }
