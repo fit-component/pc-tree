@@ -1,6 +1,6 @@
 {
   "name": "fit-tree",
-  "version": "3.0.17",
+  "version": "3.0.18",
   "description": "tree",
   "main": "lib/index.js",
   "scripts": {
@@ -15,6 +15,10 @@
   ],
   "author": "tieba",
   "license": "ISC",
-  "dependencies": {},
+  "dependencies": {
+    "react": "^15.1.0",
+    "classnames": "^2.2.3",
+    "fit-transmit-transparently": "^3.1.18"
+  },
   "typings": "lib/index.d.ts"
 }
