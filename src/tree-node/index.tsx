@@ -5,6 +5,8 @@ import {others} from '../../../../common/transmit-transparently/src'
 import '../font/index.scss'
 import './index.scss'
 
+export * from './module'
+
 export default class TreeNode extends React.Component<module.PropsInterface, module.StateInterface> {
     static defaultProps: module.PropsInterface = new module.Props()
     public state: module.StateInterface = new module.State()
@@ -24,9 +26,9 @@ export default class TreeNode extends React.Component<module.PropsInterface, mod
             this.props.onToggleShow(event)
         }
     }
-    
-    handleArrowClick(event:Event){
-        if (this.props.toggleByArrow){
+
+    handleArrowClick(event: Event) {
+        if (this.props.toggleByArrow) {
             this.setState({
                 showChildren: !this.state.showChildren
             })
@@ -68,11 +70,11 @@ export default class TreeNode extends React.Component<module.PropsInterface, mod
                 <div onClick={this.handleContainerClick.bind(this) }
                      className="title">
                     {React.Children.count(children) > 0 ?
-                    <div className="title-caret"
-                         onClick={this.handleArrowClick.bind(this) }>
-                        <i className={titleCaretClass}/>
-                    </div> : <div className="empty-caret"/>
-                        }
+                        <div className="title-caret"
+                             onClick={this.handleArrowClick.bind(this) }>
+                            <i className={titleCaretClass}/>
+                        </div> : <div className="empty-caret"/>
+                    }
                     {title || render() }
                 </div>
                 <div style={childrenStyle}
