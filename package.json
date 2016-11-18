@@ -1,6 +1,6 @@
 {
   "name": "fit-tree",
-  "version": "3.0.50",
+  "version": "3.0.51",
   "description": "tree",
   "main": "lib/index.js",
   "scripts": {
@@ -18,7 +18,7 @@
   "dependencies": {
     "react": "^0.14.0 || ^15.0.0",
     "classnames": "^2.2.3",
-    "fit-transmit-transparently": "^3.1.45"
+    "fit-transmit-transparently": "^3.1.46"
   },
   "typings": "lib/index.d.ts"
 }
